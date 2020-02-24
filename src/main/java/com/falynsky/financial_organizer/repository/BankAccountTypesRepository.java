@@ -15,7 +15,7 @@ public interface BankAccountTypesRepository extends JpaRepository<BankAccountTyp
     @Modifying
     @Query("update BankAccountTypes bat " +
             "set bat.name = :#{#bankAccountType.getName()} " +
-            "where bat.bankAccountTypesId = :#{#bankAccountType.getBankAccountTypesId()}")
+            "where bat.bankAccountTypeId = :#{#bankAccountType.bankAccountTypeId()}")
     void updateBankAccountType(@Param("bankAccountType") BankAccountTypes bankAccountType);
 }
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoanTypesRepository extends JpaRepository<LoanTypes, Integer> {
 
-    LoanTypes findByLoanId(Integer id);
+    LoanTypes findByLoanTypeId(Integer id);
 
     @Modifying
     @Query("update LoanTypes lt " +

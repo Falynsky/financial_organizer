@@ -96,7 +96,7 @@ public class MainController {
 
     @GetMapping("/loanType/{id}")
     public LoanTypes getLoanType(@PathVariable("id") Integer id) {
-        return loanTypesRepository.findByLoanId(id);
+        return loanTypesRepository.findByLoanTypeId(id);
     }
 
     @GetMapping("/subjects")
