@@ -3,7 +3,7 @@ package com.falynsky.financial_organizer.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "bank_account_types", schema = "financial_organizer", catalog = "")
+@Table(name = "bank_account_types", schema = "financial_organizer")
 public class BankAccountTypes {
     private Integer bankAccountTypesId;
     private String name;
