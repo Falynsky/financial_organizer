@@ -3,19 +3,19 @@ package com.falynsky.financial_organizer.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "bank_account_types", schema = "financial_organizer", catalog = "")
+@Table(name = "bank_account_types", schema = "financial_organizer")
 public class BankAccountTypes {
-    private Integer bankAccountTypesId;
+    private Integer bankAccountTypeId;
     private String name;
 
     @Id
-    @Column(name = "bank_account_types_id", nullable = false)
-    public Integer getBankAccountTypesId() {
-        return bankAccountTypesId;
+    @Column(name = "bank_account_type_id", nullable = false)
+    public Integer getBankAccountTypeId() {
+        return bankAccountTypeId;
     }
 
-    public void setBankAccountTypesId(Integer bankAccountTypesId) {
-        this.bankAccountTypesId = bankAccountTypesId;
+    public void setBankAccountTypeId(Integer bankAccountTypeId) {
+        this.bankAccountTypeId = bankAccountTypeId;
     }
 
     @Basic
@@ -35,7 +35,7 @@ public class BankAccountTypes {
 
         BankAccountTypes that = (BankAccountTypes) o;
 
-        if (bankAccountTypesId != null ? !bankAccountTypesId.equals(that.bankAccountTypesId) : that.bankAccountTypesId != null)
+        if (bankAccountTypeId != null ? !bankAccountTypeId.equals(that.bankAccountTypeId) : that.bankAccountTypeId != null)
             return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
@@ -44,7 +44,7 @@ public class BankAccountTypes {
 
     @Override
     public int hashCode() {
-        int result = bankAccountTypesId != null ? bankAccountTypesId.hashCode() : 0;
+        int result = bankAccountTypeId != null ? bankAccountTypeId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

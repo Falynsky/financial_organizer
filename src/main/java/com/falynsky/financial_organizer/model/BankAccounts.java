@@ -66,7 +66,7 @@ public class BankAccounts {
     }
 
     @ManyToOne
-    @JoinColumn(name = "bank_account_type_id", referencedColumnName = "bank_account_types_id", nullable = false)
+    @JoinColumn(name = "bank_account_type_id", referencedColumnName = "bank_account_type_id", nullable = false)
     public BankAccountTypes getBankAccountTypesByBankAccountTypeId() {
         return bankAccountTypesByBankAccountTypeId;
     }
