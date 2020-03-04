@@ -1,5 +1,6 @@
 package com.falynsky.financial_organizer.controller;
 
+import com.falynsky.financial_organizer.model.DTO.SubjectsDTO;
 import com.falynsky.financial_organizer.model.Subjects;
 import com.falynsky.financial_organizer.repository.SubjectsRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,13 +20,13 @@ public class SubjectsController {
     }
 
     @GetMapping("/all")
-    public List<Subjects> getAllSubjects() {
-        return subjectsRepository.findAll();
+    public List<SubjectsDTO> getAllSubjects() {
+        return subjectsRepository.retrieveSubjectsAsDTO();
     }
 
     @GetMapping("/{id}")
-    public Subjects getSubject(@PathVariable("id") Integer id) {
-        return subjectsRepository.findBySubjectId(id);
+    public SubjectsDTO getSubject(@PathVariable("id") Integer id) {
+        return subjectsRepository.retrieveSubjectAsDTOById(id);
     }
 
     @Transactional

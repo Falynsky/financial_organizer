@@ -1,6 +1,7 @@
 package com.falynsky.financial_organizer.controller;
 
 import com.falynsky.financial_organizer.model.*;
+import com.falynsky.financial_organizer.model.DTO.LoanTypesDTO;
 import com.falynsky.financial_organizer.repository.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,13 +20,13 @@ public class LoanTypesController {
     }
 
     @GetMapping("/all")
-    public List<LoanTypes> getAllLoanTypes() {
-        return loanTypesRepository.findAll();
+    public List<LoanTypesDTO> getAllLoanTypes() {
+        return loanTypesRepository.retrieveLoanTypesAsDTO();
     }
 
     @GetMapping("/{id}")
-    public LoanTypes getLoanType(@PathVariable("id") Integer id) {
-        return loanTypesRepository.findByLoanTypeId(id);
+    public LoanTypesDTO getLoanType(@PathVariable("id") Integer id) {
+        return loanTypesRepository.retrieveLoanTypeAsDTOById(id);
     }
 
     @Transactional

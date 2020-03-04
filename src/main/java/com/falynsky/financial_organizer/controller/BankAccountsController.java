@@ -1,6 +1,7 @@
 package com.falynsky.financial_organizer.controller;
 
 import com.falynsky.financial_organizer.model.BankAccounts;
+import com.falynsky.financial_organizer.model.DTO.BankAccountsDTO;
 import com.falynsky.financial_organizer.repository.BankAccountsRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +20,13 @@ public class BankAccountsController {
     }
 
     @GetMapping("/all")
-    public List<BankAccounts> getAllBankAccounts() {
-        return bankAccountsRepository.findAll();
+    public List<BankAccountsDTO> getAllBankAccounts() {
+        return bankAccountsRepository.retrieveBankAccountsAsDTO();
     }
 
     @GetMapping("/{id}")
-    public BankAccounts getBankAccount(@PathVariable("id") Integer id) {
-        return bankAccountsRepository.findByBankAccountId(id);
+    public BankAccountsDTO getBankAccount(@PathVariable("id") Integer id) {
+        return bankAccountsRepository.retrieveBankAccountAsDTOById(id);
     }
 
     @Transactional
