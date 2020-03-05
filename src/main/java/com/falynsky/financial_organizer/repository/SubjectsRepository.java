@@ -17,7 +17,8 @@ public interface SubjectsRepository extends JpaRepository<Subjects, Integer> {
 
     @Modifying
     @Query("update Subjects s " +
-            "set s.forename = :#{#subject.getForename()}," +
+            "set s.subjectId = :#{#subject.getSubjectId()}," +
+            "s.forename = :#{#subject.getForename()}," +
             "s.surename = :#{#subject.getSurename()}," +
             "s.email = :#{#subject.getEmail()} " +
             "where s.subjectId = :#{#subject.getSubjectId()}")

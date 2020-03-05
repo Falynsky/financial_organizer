@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/loanTypes/")
+@RequestMapping("/loanTypes")
 public class LoanTypesController {
 
     final LoanTypesRepository loanTypesRepository;
@@ -30,7 +30,7 @@ public class LoanTypesController {
     }
 
     @Transactional
-    @PostMapping("/update/loanType")
+    @PostMapping("/update")
     public void updateLoan(@RequestBody LoanTypes data) {
         loanTypesRepository.updateLoanType(data);
     }

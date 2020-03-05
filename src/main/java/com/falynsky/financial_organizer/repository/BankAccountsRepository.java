@@ -25,7 +25,12 @@ public interface BankAccountsRepository extends JpaRepository<BankAccounts, Inte
     @Query("SELECT b FROM BankAccounts AS b")
     List<BankAccounts> findAll();
 
-    @Query("SELECT new com.falynsky.financial_organizer.model.DTO.BankAccountsDTO(b.bankAccountId, b.name,b.accountBalance, b.bankAccountTypesByBankAccountTypeId.bankAccountTypeId, b.accountsByAccountId.accountId) FROM BankAccounts b")
+    @Query("SELECT new com.falynsky.financial_organizer.model.DTO.BankAccountsDTO(" +
+            "b.bankAccountId, " +
+            "b.name, " +
+            "b.accountBalance, " +
+            "b.bankAccountTypesByBankAccountTypeId.bankAccountTypeId, " +
+            "b.accountsByAccountId.accountId) FROM BankAccounts b")
     List<BankAccountsDTO> retrieveBankAccountsAsDTO();
 
     @Query("SELECT new com.falynsky.financial_organizer.model.DTO.BankAccountsDTO(b.bankAccountId, b.name,b.accountBalance, b.bankAccountTypesByBankAccountTypeId.bankAccountTypeId, b.accountsByAccountId.accountId) FROM BankAccounts b WHERE b.bankAccountId = :bankAccountId")
