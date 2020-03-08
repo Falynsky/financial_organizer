@@ -2,6 +2,7 @@ package com.falynsky.financial_organizer.repository;
 
 import com.falynsky.financial_organizer.model.BankAccountTypes;
 import com.falynsky.financial_organizer.model.DTO.BankAccountTypesDTO;
+import com.falynsky.financial_organizer.model.Subjects;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,7 +19,7 @@ public interface BankAccountTypesRepository extends JpaRepository<BankAccountTyp
     @Modifying
     @Query("update BankAccountTypes bat " +
             "set bat.name = :#{#bankAccountType.getName()} " +
-            "where bat.bankAccountTypeId = :#{#bankAccountType.bankAccountTypeId()}")
+            "where bat.bankAccountTypeId = :#{#bankAccountType.getBankAccountTypeId()}")
     void updateBankAccountType(@Param("bankAccountType") BankAccountTypes bankAccountType);
 
     @Query("SELECT bt FROM BankAccountTypes AS bt")
