@@ -16,11 +16,13 @@ public interface AccountsRepository extends JpaRepository<Accounts, Integer> {
     Accounts findByAccountId(Integer id);
 
     @Modifying
-    @Query("update Accounts a " +
+    @Query(value = "update accounts a " +
             "set a.login = :#{#account.getLogin()}," +
-            "a.password = :#{#account.getPassword()} " +
-            "where a.accountId = :#{#account.getAccountId()}")
-    void updateAccount(@Param("account") Accounts account);
+            "a.password = :#{#account.getPassword()}, " +
+            "a.subject_id = :#{#account.getSubjectId()}, " +
+            "a.account_type_id = :#{#account.getAccountTypesByAccountTypeId()} " +
+            "where a.account_id = :#{#account.getAccountId()}", nativeQuery = true)
+    void updateAccount(@Param("account") AccountsDTO account);
 
     @Query("SELECT a FROM Accounts AS a")
     List<Accounts> findAll();

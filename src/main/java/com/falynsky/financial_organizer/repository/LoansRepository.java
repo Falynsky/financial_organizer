@@ -16,11 +16,13 @@ public interface LoansRepository extends JpaRepository<Loans, Integer> {
     Loans findByLoanId(Integer id);
 
     @Modifying
-    @Query("update Loans l " +
+    @Query(value = "update loans l " +
             "set l.name = :#{#loan.getName()}, " +
-            "l.value = :#{#loan.getValue()} " +
-            "where l.loanId = :#{#loan.getLoanId()}")
-    void updateLoan(@Param("loan") Loans loan);
+            "l.value = :#{#loan.getValue()}, " +
+            "l.loan_type_id = :#{#loan.getLoanTypeId()}, " +
+            "l.account_id = :#{#loan.getAccountsByAccountId()} " +
+            "where l.loan_id = :#{#loan.getLoanId()}", nativeQuery = true)
+    void updateLoan(@Param("loan") LoansDTO loan);
 
     @Query("SELECT l FROM Loans AS l")
     List<Loans> findAll();

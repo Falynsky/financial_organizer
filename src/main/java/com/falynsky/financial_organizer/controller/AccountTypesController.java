@@ -30,7 +30,7 @@ public class AccountTypesController {
 
     @Transactional
     @PostMapping("/update")
-    public void updateAccountType(@RequestBody AccountTypes data) {
+    public void updateAccountType(@RequestBody AccountTypesDTO data) {
         accountTypesRepository.updateAccountType(data);
     }
 

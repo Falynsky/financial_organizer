@@ -17,10 +17,10 @@ public interface BankAccountTypesRepository extends JpaRepository<BankAccountTyp
     BankAccountTypes findByBankAccountTypeId(Integer id);
 
     @Modifying
-    @Query("update BankAccountTypes bat " +
+    @Query(value = "update bank_account_types bat " +
             "set bat.name = :#{#bankAccountType.getName()} " +
-            "where bat.bankAccountTypeId = :#{#bankAccountType.getBankAccountTypeId()}")
-    void updateBankAccountType(@Param("bankAccountType") BankAccountTypes bankAccountType);
+            "where bat.bank_account_type_id = :#{#bankAccountType.getBankAccountTypeId()}", nativeQuery = true)
+    void updateBankAccountType(@Param("bankAccountType") BankAccountTypesDTO bankAccountType);
 
     @Query("SELECT bt FROM BankAccountTypes AS bt")
     List<BankAccountTypes> findAll();

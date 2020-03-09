@@ -16,10 +16,10 @@ public interface LoanTypesRepository extends JpaRepository<LoanTypes, Integer> {
     LoanTypes findByLoanTypeId(Integer id);
 
     @Modifying
-    @Query("update LoanTypes lt " +
+    @Query(value = "update loan_types lt " +
             "set lt.name = :#{#loanType.getName()} " +
-            "where lt.loanTypeId = :#{#loanType.getLoanTypeId()}")
-    void updateLoanType(@Param("loanType") LoanTypes loanType);
+            "where lt.loan_type_id = :#{#loanType.getLoanTypeId()}", nativeQuery = true)
+    void updateLoanType(@Param("loanType") LoanTypesDTO loanType);
 
     @Query("SELECT lt FROM LoanTypes AS lt")
     List<LoanTypes> findAll();

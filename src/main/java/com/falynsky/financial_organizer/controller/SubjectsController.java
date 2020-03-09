@@ -31,7 +31,7 @@ public class SubjectsController {
 
     @Transactional
     @PostMapping("/update")
-    public void updateSubject(@RequestBody Subjects data) {
+    public void updateSubject(@RequestBody SubjectsDTO data) {
         subjectsRepository.updateSubject(data);
     }
 }

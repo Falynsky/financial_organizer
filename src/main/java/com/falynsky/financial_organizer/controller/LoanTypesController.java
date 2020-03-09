@@ -31,7 +31,7 @@ public class LoanTypesController {
 
     @Transactional
     @PostMapping("/update")
-    public void updateLoan(@RequestBody LoanTypes data) {
+    public void updateLoan(@RequestBody LoanTypesDTO data) {
         loanTypesRepository.updateLoanType(data);
     }
 

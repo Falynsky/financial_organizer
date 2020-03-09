@@ -16,13 +16,13 @@ public interface SubjectsRepository extends JpaRepository<Subjects, Integer> {
     Subjects findBySubjectId(Integer id);
 
     @Modifying
-    @Query("update Subjects s " +
-            "set s.subjectId = :#{#subject.getSubjectId()}," +
+    @Query(value = "update Subjects s " +
+            "set s.subject_id = :#{#subject.getSubjectId()}," +
             "s.forename = :#{#subject.getForename()}," +
             "s.surename = :#{#subject.getSurename()}," +
             "s.email = :#{#subject.getEmail()} " +
-            "where s.subjectId = :#{#subject.getSubjectId()}")
-    void updateSubject(@Param("subject") Subjects subject);
+            "where s.subject_id = :#{#subject.getSubjectId()}", nativeQuery = true)
+    void updateSubject(@Param("subject") SubjectsDTO subject);
 
     @Query("SELECT s FROM Subjects AS s")
     List<Subjects> findAll();
