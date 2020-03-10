@@ -16,11 +16,11 @@ public interface AccountTypesRepository extends JpaRepository<AccountTypes, Inte
     AccountTypes findByAccountTypeId(Integer id);
 
     @Modifying
-    @Query("update AccountTypes at " +
+    @Query(value = "update account_types at " +
             "set at.name = :#{#accountType.getName()}," +
-            "at.permissionLevel = :#{#accountType.getPermissionLevel()} " +
-            "where at.accountTypeId = :#{#accountType.getAccountTypeId()}")
-    void updateAccountType(@Param("accountType") AccountTypes accountType);
+            "at.permission_level = :#{#accountType.getPermissionLevel()} " +
+            "where at.account_type_id = :#{#accountType.getAccountTypeId()}", nativeQuery = true)
+    void updateAccountType(@Param("accountType") AccountTypesDTO accountType);
 
     @Query("SELECT at FROM AccountTypes AS at")
     List<AccountTypes> findAll();

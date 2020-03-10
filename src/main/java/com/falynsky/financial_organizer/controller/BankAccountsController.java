@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/bankAccounts/")
+@RequestMapping("/bankAccounts")
 public class BankAccountsController {
     final BankAccountsRepository bankAccountsRepository;
 
@@ -24,14 +24,19 @@ public class BankAccountsController {
         return bankAccountsRepository.retrieveBankAccountsAsDTO();
     }
 
+    @GetMapping("/my")
+    public List<BankAccountsDTO> getAllMyBankAccounts(@RequestParam(value = "login") String login) {
+        return bankAccountsRepository.retrieveMyBankAccountsAsDTO(login);
+    }
+
     @GetMapping("/{id}")
     public BankAccountsDTO getBankAccount(@PathVariable("id") Integer id) {
         return bankAccountsRepository.retrieveBankAccountAsDTOById(id);
     }
 
     @Transactional
-    @PostMapping("/bankAccount/update")
-    public void updateBankAccount(@RequestBody BankAccounts data) {
+    @PostMapping("/update")
+    public void updateBankAccount(@RequestBody BankAccountsDTO data) {
         bankAccountsRepository.updateBankAccount(data);
     }
 }
