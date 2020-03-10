@@ -1,5 +1,6 @@
 package com.falynsky.financial_organizer.controller;
 
+import com.falynsky.financial_organizer.model.DTO.SubjectsDTO;
 import com.falynsky.financial_organizer.model.Subjects;
 import com.falynsky.financial_organizer.repository.SubjectsRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/subjects/")
+@RequestMapping("/subjects")
 public class SubjectsController {
 
     final SubjectsRepository subjectsRepository;
@@ -19,18 +20,18 @@ public class SubjectsController {
     }
 
     @GetMapping("/all")
-    public List<Subjects> getAllSubjects() {
-        return subjectsRepository.findAll();
+    public List<SubjectsDTO> getAllSubjects() {
+        return subjectsRepository.retrieveSubjectsAsDTO();
     }
 
     @GetMapping("/{id}")
-    public Subjects getSubject(@PathVariable("id") Integer id) {
-        return subjectsRepository.findBySubjectId(id);
+    public SubjectsDTO getSubject(@PathVariable("id") Integer id) {
+        return subjectsRepository.retrieveSubjectAsDTOById(id);
     }
 
     @Transactional
-    @PostMapping("/update/subject")
-    public void updateSubject(@RequestBody Subjects data) {
+    @PostMapping("/update")
+    public void updateSubject(@RequestBody SubjectsDTO data) {
         subjectsRepository.updateSubject(data);
     }
 }

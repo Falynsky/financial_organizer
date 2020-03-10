@@ -1,5 +1,6 @@
 package com.falynsky.financial_organizer.controller;
 
+import com.falynsky.financial_organizer.model.DTO.LoansDTO;
 import com.falynsky.financial_organizer.model.Loans;
 import com.falynsky.financial_organizer.repository.LoansRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/loans/")
+@RequestMapping("/loans")
 public class LoansController {
     final LoansRepository loansRepository;
 
@@ -18,18 +19,18 @@ public class LoansController {
     }
 
     @GetMapping("/all")
-    public List<Loans> getAllLoans() {
-        return loansRepository.findAll();
+    public List<LoansDTO> getAllLoans() {
+        return loansRepository.retrieveLoansAsDTO();
     }
 
     @GetMapping("/{id}")
-    public Loans getLoan(@PathVariable("id") Integer id) {
-        return loansRepository.findByLoanId(id);
+    public LoansDTO getLoan(@PathVariable("id") Integer id) {
+        return loansRepository.retrieveLoanAsDTOById(id);
     }
 
     @Transactional
-    @PostMapping("/update/loan")
-    public void updateLoan(@RequestBody Loans data) {
+    @PostMapping("/update")
+    public void updateLoan(@RequestBody LoansDTO data) {
         loansRepository.updateLoan(data);
     }
 

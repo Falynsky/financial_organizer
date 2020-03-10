@@ -1,6 +1,7 @@
 package com.falynsky.financial_organizer.controller;
 
 import com.falynsky.financial_organizer.model.BankAccounts;
+import com.falynsky.financial_organizer.model.DTO.BankAccountsDTO;
 import com.falynsky.financial_organizer.repository.BankAccountsRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/bankAccounts/")
+@RequestMapping("/bankAccounts")
 public class BankAccountsController {
     final BankAccountsRepository bankAccountsRepository;
 
@@ -19,18 +20,23 @@ public class BankAccountsController {
     }
 
     @GetMapping("/all")
-    public List<BankAccounts> getAllBankAccounts() {
-        return bankAccountsRepository.findAll();
+    public List<BankAccountsDTO> getAllBankAccounts() {
+        return bankAccountsRepository.retrieveBankAccountsAsDTO();
+    }
+
+    @GetMapping("/my")
+    public List<BankAccountsDTO> getAllMyBankAccounts(@RequestParam(value = "login") String login) {
+        return bankAccountsRepository.retrieveMyBankAccountsAsDTO(login);
     }
 
     @GetMapping("/{id}")
-    public BankAccounts getBankAccount(@PathVariable("id") Integer id) {
-        return bankAccountsRepository.findByBankAccountId(id);
+    public BankAccountsDTO getBankAccount(@PathVariable("id") Integer id) {
+        return bankAccountsRepository.retrieveBankAccountAsDTOById(id);
     }
 
     @Transactional
-    @PostMapping("/bankAccount/update")
-    public void updateBankAccount(@RequestBody BankAccounts data) {
+    @PostMapping("/update")
+    public void updateBankAccount(@RequestBody BankAccountsDTO data) {
         bankAccountsRepository.updateBankAccount(data);
     }
 }

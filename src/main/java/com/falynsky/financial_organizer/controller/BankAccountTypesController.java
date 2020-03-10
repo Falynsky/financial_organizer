@@ -1,6 +1,7 @@
 package com.falynsky.financial_organizer.controller;
 
 import com.falynsky.financial_organizer.model.BankAccountTypes;
+import com.falynsky.financial_organizer.model.DTO.BankAccountTypesDTO;
 import com.falynsky.financial_organizer.repository.BankAccountTypesRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/bankAccountTypes/")
+@RequestMapping("/bankAccountTypes")
 public class BankAccountTypesController {
     final BankAccountTypesRepository bankAccountTypesRepository;
 
@@ -18,8 +19,8 @@ public class BankAccountTypesController {
     }
 
     @GetMapping("/all")
-    public List<BankAccountTypes> getAllBankAccountTypes() {
-        return bankAccountTypesRepository.findAll();
+    public List<BankAccountTypesDTO> getAllBankAccountTypes() {
+        return bankAccountTypesRepository.retrieveBankAccountTypesAsDTO();
     }
 
     @GetMapping("/{id}")
@@ -28,8 +29,8 @@ public class BankAccountTypesController {
     }
 
     @Transactional
-    @PostMapping("/update/bankAccountType")
-    public void updateBankAccountType(@RequestBody BankAccountTypes data) {
+    @PostMapping("/update")
+    public void updateBankAccountType(@RequestBody BankAccountTypesDTO data) {
         bankAccountTypesRepository.updateBankAccountType(data);
     }
 
